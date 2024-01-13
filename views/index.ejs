@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Member - Dashboard</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/icon/stretch-icon.png" rel="icon">
+  <link href="/icon/stretch-icon.png" rel="apple-touch-icon">
+
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+  <script src="/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/member.css">
+  <style>
+    .category-box {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto; /* Enable horizontal scrolling */
+            white-space: nowrap; /* Keep content in a single line */
+            background-color: #ffffff;
+        }
+
+        .announcement-box {
+            display: inline-block;
+            width: 300px; /* Set a fixed width for each announcement box */
+            margin-right: 10px; /* Add some margin between boxes */
+            vertical-align: top; /* Align boxes to the top */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .announcement-content {
+            max-height: 100px; /* Set a max-height for the content */
+            overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+        }
+
+        .announcement-box div {
+            margin-bottom: 8px;
+        }
+  </style>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="/" class="logo d-flex align-items-center">
+        <!-- <img src="/src/images/stretch_fitness_hub_transparent.png" alt=""> -->
+        <span class="d-none d-lg-block">Member</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        
+
+        
+
+        
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">Loading...</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="profile">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <form action="/logout" method="post">
+                <button class="dropdown-item d-flex align-items-center" type="submit">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Sign Out</span>
+                </button>
+            </form>
+        </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="billing">
+          <i class="bi bi-journal-text"></i><span>Billing History</span>
+        </a>
+      </li><!-- End Forms Nav -->
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Home</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <!-- User Section -->
+
+    <!-- QR Code Section -->
+    <section class="section mt-5 d-flex justify-content-center text-center">
+      <div class="card" style="width: 18rem;">
+        <img src="<%= qrCodePath %>" class="card-img-top" alt="User QR Code">
+        <div class="card-body">
+          <h5 class="card-title text-center">QR Code</h5>
+          <p class="card-text" style="text-align: justify;">You can download your QR code and show it to staff for
+            automated tracking.
+          </p>
+          <a id="downloadLink" href="<%= qrCodePath %>" download="<%= `${user.firstName + user.lastName}_qr_code.png` %>" class="btn btn-primary">Download</a>
+        </div>
+      </div>
+    </section>
+    <!-- End QR Code Section -->
+    <section class="section mt-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-body text-center p-0" style="padding-top: 20px; ">
+                  <h2 class="card-title">Announcement & Updates</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="announcementsContainer"></div>
+        </div>
+      </section>
+    
+
+</main>
+<!-- ======= Footer ======= -->
+<%- include("partials/member/footer") %>
+<!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="/assets/vendor/echarts/echarts.min.js"></script>
+  <script src="/assets/vendor/quill/quill.min.js"></script>
+  <script src="/assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/assets/js/main.js"></script>
+    <!-- Add the script below this line -->
+    <script>
+      async function fetchAnnouncements() {
+        try {
+          // Fetch user details data from the backend
+          const userDetailsResponse = await fetch('/getUserDetails');
+          const userDetails = await userDetailsResponse.json();
+    
+          // Update the displayed name in the dropdown
+          document.querySelector('.dropdown-toggle').textContent = userDetails.firstName + ' ' + userDetails.lastName;
+    
+          // Fetch announcements data from the backend
+          const announcementsResponse = await fetch('/get_announcements');
+          const announcements = await announcementsResponse.json();
+    
+          const announcementsContainer = document.getElementById('announcementsContainer');
+    
+          // Clear existing announcements
+          announcementsContainer.innerHTML = '';
+    
+          // Group announcements by category
+          const groupedAnnouncements = groupByCategory(announcements);
+    
+          // Update the DOM with fetched announcements
+          for (const category in groupedAnnouncements) {
+            const categoryContainer = document.createElement('div');
+            categoryContainer.classList.add('category-box');
+            categoryContainer.innerHTML = `<h2>${category} Announcements</h2>`;
+    
+            groupedAnnouncements[category].forEach((announcement) => {
+              const announcementBox = document.createElement('div');
+              announcementBox.classList.add('announcement-box');
+    
+              const formattedDate = new Date(announcement.date).toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+              });
+    
+              announcementBox.innerHTML = `
+                  <div class="card h-100">
+                      <div>
+                          <div class="card-body">
+                              <div><h4 class="card-title">${announcement.title}</h4></div>
+                              <div><h6 class="card-subtitle mb-2 text-body-secondary">${formattedDate}</h6></div>
+                              <div class="announcement-content"><p class="card-text">${announcement.content}</p></div>
+                          </div>
+                      </div>
+                  </div>
+              `;
+              categoryContainer.appendChild(announcementBox);
+            });
+    
+            announcementsContainer.appendChild(categoryContainer);
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error.message);
+        }
+      }
+    
+      // Helper function to group announcements by category
+      function groupByCategory(announcements) {
+        const grouped = {};
+        announcements.forEach((announcement) => {
+          const category = announcement.category;
+          if (!grouped[category]) {
+            grouped[category] = [];
+          }
+          grouped[category].push(announcement);
+        });
+        return grouped;
+      }
+    
+      // Call fetchAnnouncements when the page loads
+      document.addEventListener('DOMContentLoaded', () => {
+        fetchAnnouncements();
+      });
+    </script>
+    <!-- End of script -->
+</body>
+
+</html>

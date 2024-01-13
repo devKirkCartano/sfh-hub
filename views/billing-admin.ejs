@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Admin - Billing</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/icon/stretch-icon.png" rel="icon">
+  <link href="/icon/stretch-icon.png" rel="apple-touch-icon">
+
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+  <script src="/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- JQuery DataTable Css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+
+  <!-- Template Main CSS File -->
+  <link href="/assets/css/style.css" rel="stylesheet">
+
+
+
+ 
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <%- include("partials/admin/header") %>
+  <!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <%- include("partials/admin/sidebar") %>
+  <!-- End Sidebar-->
+
+  <main id="main" class="main">
+    <div class="pagetitle">
+      <h1>Billing</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+          <li class="breadcrumb-item active">Billing</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Billing</h5>
+          <form action="/createBill" method="post" id="billForm">
+            <div class="row">
+                <div class="mb-3 col-sm-6">
+                    <label for="userId" class="form-label">User:</label>
+                    <select class="form-select" name="userId" id="userId" required>
+                        <option value="" disabled selected>--Select user--</option>
+                    </select>
+                    <!-- <label for="userId" class="form-label">User:</label>
+                    <select class="form-select" id="userId" name="userId" required>
+                        <option>--Select user--</option>
+                    </select> -->
+                </div>
+                <div class="mb-3 col-sm-6">
+                    <label for="membershipType" class="form-label">Membership Type:</label>
+                    <input type="text" class="form-control" id="membershipType" name="membershipType" readonly>
+                </div>
+            </div>
+        
+            <div class="row mb-3">
+                <div class="mb-3 col-sm-6">
+                    <label for="datePaid" class="form-label">Date Paid:</label>
+                    <input type="date" class="form-control" id="datePaid" name="datePaid" required onkeydown="return false">
+                </div>
+                <div class="mb-3 col-sm-6">
+                    <label for="subscriptionExpiration" class="form-label">Subscription Expiration:</label>
+                    <input type="text" class="form-control" id="subscriptionExpiration" name="subscriptionExpiration" readonly>
+                </div>
+            </div>
+        
+            <div class="row mb-3">
+                <div class="mb-3 col-sm-6">
+                    <label for="amount" class="form-label">Amount:</label>
+                    <input type="number" class="form-control" id="amount" name="amount" readonly>
+                </div>
+            </div>
+        
+            <div class="d-flex justify-content-end">
+                <div>
+                    <button class="btn btn-success" type="submit">Create Bill</button>
+                </div>
+            </div>
+        </form>
+        </div>
+      </div>
+    </section><!-- End Section -->
+   <!-- View Members -->
+   <section class="section">
+    <div class="card" style="padding-top: 20px;">
+    <div class="card-body">
+    <div id="billTableContainer">
+      <h2 class="card-title">Paid Members</h2>
+      <table id="billTable" class="table table-striped" style="width:100%">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Membership Type</th>
+            <th>Date Paid</th>
+            <th>Subscription Expiration</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody id="billTableBody">
+          <!-- Table body will be filled dynamically using jQuery -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  </section>
+
+  <!-- End View Members Section -->
+
+</main><!-- End #main -->
+<!-- ======= Footer ======= -->
+<%- include("partials/admin/footer") %>
+<!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+    class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/chart.js/chart.umd.js"></script>
+<script src="/assets/vendor/echarts/echarts.min.js"></script>
+<script src="/assets/vendor/quill/quill.min.js"></script>
+<script src="/assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="/assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="/assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/assets/js/main.js"></script>
+
+<!-- JQuery DataTable -->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<script src="/js/table_script.js"></script>
+  <script>
+    // Fetch the admin name from the server using the Fetch API
+  fetch('/getLoggedInAdminName')
+    .then(response => response.json())
+    .then(data => {
+      // Update the HTML content with the admin name
+      document.getElementById('adminNamePlaceholder').textContent = data.name;
+      document.getElementById('adminNameHeader').textContent = data.name;
+    })
+    .catch(error => console.error('Error fetching admin name:', error));
+    $(document).ready(function () {
+      const userIdDropdown = $('#userId');
+      const membershipTypeInput = $('#membershipType');
+      const datePaidInput = $('#datePaid');
+      const subscriptionExpirationInput = $('#subscriptionExpiration');
+      const amountInput = $('#amount');
+      const billForm = $('#billForm');
+      const billTableBody = $('#billTableBody');
+      
+  
+      // Function to calculate subscription expiration
+      function calculateSubscriptionExpiration() {
+        const selectedUserId = userIdDropdown.val();
+  
+        // Make an Ajax request to fetch user details based on the selected user ID
+        $.get(`/getUserDetails/${selectedUserId}`)
+          .done(function (data) {
+            console.log('Received data:', data);
+  
+            // Update the form fields with the fetched data
+            membershipTypeInput.val(data.membershipType);
+  
+            // Calculate subscriptionExpiration (one month after the date paid)
+            const datePaidObject = new Date(datePaidInput.val());
+            const subscriptionExpiration = new Date(datePaidObject.setMonth(datePaidObject.getMonth() + 1));
+  
+            // Check if the calculated date is valid
+            if (!isNaN(subscriptionExpiration.getTime())) {
+              // Format subscriptionExpiration as "mm/dd/yy"
+              const formattedDate = subscriptionExpiration.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
+              subscriptionExpirationInput.val(formattedDate);
+            } else {
+              console.error('Invalid date calculated');
+              subscriptionExpirationInput.val(''); // Clear the input if the date is invalid
+            }
+  
+            // Calculate the amount based on membership type
+            const amount = (data.membershipType === 'regular') ? 1300 : 1200;
+            amountInput.val(amount);
+          })
+          .fail(function (error) {
+            console.error('Error fetching user details:', error);
+          });
+      }
+  
+      // Attach the calculateSubscriptionExpiration function to the change event of datePaidInput
+      datePaidInput.on('change', calculateSubscriptionExpiration);
+  
+      // Fetch all users and populate the userId dropdown
+      $.get('/getAllSubscribedUsers')
+        .done(function (users) {
+          users.forEach(function (user) {
+            const option = $('<option>').val(user.subscribedId).text(`${user.firstName} ${user.lastName}`);
+            userIdDropdown.append(option);
+          });
+        })
+        .fail(function (error) {
+          console.error('Error fetching users:', error);
+        });
+  
+      // Attach an event listener to the form submission
+      billForm.on('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+  
+        // Make an Ajax request to submit the form data
+        $.ajax({
+          url: '/createBill',
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({
+            userId: userIdDropdown.val(),
+            datePaid: datePaidInput.val(),
+            amount: amountInput.val(),
+          }),
+        })
+          .done(function () {
+            // Show success pop-up
+            Swal.fire({
+              icon: 'success',
+              title: 'Bill uploaded successfully!',
+              showConfirmButton: false,
+              timer: 1000, // Set the timer duration in milliseconds (adjust as needed)
+            });
+            // Fetch and fill the bills table
+            fillBillsTable();
+            location.reload(true);
+          })
+          .fail(function (error) {
+            console.error('Error uploading bill:', error);
+            // Show failure pop-up
+            Swal.fire({
+              icon: 'error',
+              title: 'Failed to upload bill',
+              text: 'Please try again.',
+              showConfirmButton: false,
+              timer: 1000,
+              });
+          });
+      });
+  
+      // Attach the calculateSubscriptionExpiration function to the change event of userIdDropdown
+      userIdDropdown.on('change', calculateSubscriptionExpiration);
+  
+      function fillBillsTable() {
+  // Make an Ajax request to fetch bill details
+  $.get('/getAllBills')
+    .done(function (bills) {
+      billTableBody.empty(); // Clear existing rows
+
+      bills.forEach(function (bill) {
+        // Parse the date strings
+        const datePaid = new Date(bill.datePaid).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+        const subscriptionExpiration = new Date(bill.subscriptionExpiration).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+        // Add PHP sign to the amount
+        const amountWithSign = `₱${bill.amount}`;
+
+        // Append a new row to the table
+        billTableBody.append(
+          `<tr>
+            <td>${bill.userName}</td>
+            <td>${bill.membershipType}</td>
+            <td>${datePaid}</td>
+            <td>${subscriptionExpiration}</td>
+            <td>${amountWithSign}</td>
+          </tr>`
+        );
+      });
+
+      // Initialize DataTables after filling the table
+      $('#billTable').DataTable();
+    })
+    .fail(function (error) {
+      console.error('Error fetching bills:', error);
+    });
+}
+  
+      // Fetch and fill the bills table on page load
+      fillBillsTable();
+    });
+  </script>
+</body>
+
+</html>

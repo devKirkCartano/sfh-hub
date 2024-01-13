@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <!-- Favicons -->
+  <link href="/icon/stretch-icon.png" rel="icon">
+  <link href="/icon/stretch-icon.png" rel="apple-touch-icon">
+
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+  <script src="/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+  <title>Stretch Fitness Hub - Home</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap"
+    rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="../css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="../css/responsive.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section starts -->
+    <%- include("partials/header") %>
+    <!-- end header section -->
+
+    <!-- slider section -->
+    <%- include("partials/slider") %>
+    <!-- end slider section -->
+  </div>
+
+  <!-- about section -->
+    <%- include("partials/about") %>
+  <!-- end about section -->
+
+    <!-- facility section -->
+    <%- include("partials/facility") %>
+    <!-- facility service section -->
+
+    <!-- Plan section -->
+    <%- include("partials/plan") %>
+    <!-- Plan section -->
+
+    <!-- Faqs section -->
+    <%- include("partials/faqs") %>
+    <!-- End Faqs section -->
+
+  <!-- result section -->
+  <section class="result_section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 px-0">
+          <div class="img-box">
+            <img src="../images/result-img.jpg" alt="">
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-5">
+          <div class="detail-box">
+            <h2>
+              BUILT TO BRING <br>
+              BEST RESULTS
+            </h2>
+            <p>
+              Join us for a fitness journey <span class="attention">BUILT TO BRING BEST RESULTS</span>. Elevate your workouts with
+              cutting-edge facilities, expert guidance, and a community committed to your success. Become a member today and unleash
+              your full potential!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end result section -->
+
+  <!-- contact section -->
+  <%- include("partials/contact")  %>
+  <!-- end contact section -->
+
+  <!-- info section -->
+  <%- include("partials/info") %>
+  <!-- end info section -->
+
+  <!-- footer section -->
+  <%- include("partials/footer") %>
+  <!-- footer section -->
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <!-- Added script for carousel -->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/popper.min.js"></script>
+
+  <script>
+    function openNav() {
+      document.getElementById("myNav").classList.toggle("menu_width");
+      document
+        .querySelector(".custom_menu-btn")
+        .classList.toggle("menu_btn-style");
+    }
+  </script>
+</body>
+
+</html>

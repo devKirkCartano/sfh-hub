@@ -1,0 +1,15 @@
+/* Download button style */
+a#downloadLink {
+  background-color: #c0a68d;
+  border-color: #c0a68d;
+}
+
+a#downloadLink:hover {
+  background-color: #896247;
+  border-color: #896247;
+}
+
+a#downloadLink:active {
+  background-color: #311b0e;
+  border-color: #311b0e;
+}

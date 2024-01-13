@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Admin - Accounting</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <script src="/accounting/accounting.min.js"></script>
+  <!-- Favicons -->
+  <link href="/icon/stretch-icon.png" rel="icon">
+  <link href="/icon/stretch-icon.png" rel="apple-touch-icon">
+
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+  <script src="/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/assets/css/style.css" rel="stylesheet">
+
+ 
+</head>
+
+
+<body>
+    <!-- ======= Header ======= -->
+    <%- include("partials/admin/header") %>
+    <!-- End Header -->
+  
+    <!-- ======= Sidebar ======= -->
+    <%- include("partials/admin/sidebar") %>
+    <!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Accounting</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+          <li class="breadcrumb-item active">Accounting</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+  <h2>Monthly Transactions</h2>
+  <form id="monthlyForm" method="POST" action="/saveMonthlyTransactions">
+        <table id="monthlyTable" class="table">
+    <tr>
+      <th>Month</th>
+      <th>Water Bill</th>
+      <th>Electric Bill</th>
+      <th>Drinkable Water Bill</th>
+      <th>Product Sales</th>
+      <th>Subscription</th>
+      <th>Walk-in</th>
+      <th>Total Monthly Expenses</th>
+      <th>Total Monthly Income</th>
+    </tr>
+    <tr>
+        <td>January</td>
+        <td><input type="number" class="waterBill" value="0"></td>
+        <td><input type="number" class="electricBill" value="0"></td>
+        <td><input type="number" class="drinkableWaterBill" value="0"></td>
+        <td><input type="number" class="productSales" value="0"></td>
+        <td><input type="number" class="subscription" value="0"></td>
+        <td><input type="number" class="walkIn" value="0"></td>
+        <td class="totalExpense">0.00</td>
+        <td class="totalIncome">0.00</td>
+      </tr>
+      <tr>
+          <td>February</td>
+          <td><input type="number" class="waterBill" value="0"></td>
+          <td><input type="number" class="electricBill" value="0"></td>
+          <td><input type="number" class="drinkableWaterBill" value="0"></td>
+          <td><input type="number" class="productSales" value="0"></td>
+          <td><input type="number" class="subscription" value="0"></td>
+          <td><input type="number" class="walkIn" value="0"></td>
+          <td class="totalExpense">0.00</td>
+          <td class="totalIncome">0.00</td>
+        </tr>
+        <tr>
+          <td>March</td>
+          <td><input type="number" class="waterBill" value="0"></td>
+          <td><input type="number" class="electricBill" value="0"></td>
+          <td><input type="number" class="drinkableWaterBill" value="0"></td>
+          <td><input type="number" class="productSales" value="0"></td>
+          <td><input type="number" class="subscription" value="0"></td>
+          <td><input type="number" class="walkIn" value="0"></td>
+          <td class="totalExpense">0.00</td>
+          <td class="totalIncome">0.00</td>
+        </tr>
+        <tr>
+          <td>April</td>
+          <td><input type="number" class="waterBill" value="0"></td>
+          <td><input type="number" class="electricBill" value="0"></td>
+          <td><input type="number" class="drinkableWaterBill" value="0"></td>
+          <td><input type="number" class="productSales" value="0"></td>
+          <td><input type="number" class="subscription" value="0"></td>
+          <td><input type="number" class="walkIn" value="0"></td>
+          <td class="totalExpense">0.00</td>
+          <td class="totalIncome">0.00</td>
+        </tr>
+        <tr>
+          <td>May</td>
+          <td><input type="number" class="waterBill" value="0"></td>
+          <td><input type="number" class="electricBill" value="0"></td>
+          <td><input type="number" class="drinkableWaterBill" value="0"></td>
+          <td><input type="number" class="productSales" value="0"></td>
+          <td><input type="number" class="subscription" value="0"></td>
+          <td><input type="number" class="walkIn" value="0"></td>
+          <td class="totalExpense">0.00</td>
+          <td class="totalIncome">0.00</td>
+        </tr>
+        <tr>
+          <td>June</td>
+          <td><input type="number" class="waterBill" value="0"></td>
+          <td><input type="number" class="electricBill" value="0"></td>
+          <td><input type="number" class="drinkableWaterBill" value="0"></td>
+          <td><input type="number" class="productSales" value="0"></td>
+          <td><input type="number" class="subscription" value="0"></td>
+          <td><input type="number" class="walkIn" value="0"></td>
+          <td class="totalExpense">0.00</td>
+          <td class="totalIncome">0.00</td>
+        </tr>
+        <tr>
+          <td>July</td>
+          <td><input type="number" class="waterBill" value="0"></td>
+          <td><input type="number" class="electricBill" value="0"></td>
+          <td><input type="number" class="drinkableWaterBill" value="0"></td>
+          <td><input type="number" class="productSales" value="0"></td>
+          <td><input type="number" class="subscription" value="0"></td>
+          <td><input type="number" class="walkIn" value="0"></td>
+          <td class="totalExpense">0.00</td>
+          <td class="totalIncome">0.00</td>
+        </tr>
+        <tr>
+          <td>August</td>
+          <td><input type="number" class="waterBill" value="0"></td>
+          <td><input type="number" class="electricBill" value="0"></td>
+          <td><input type="number" class="drinkableWaterBill" value="0"></td>
+          <td><input type="number" class="productSales" value="0"></td>
+          <td><input type="number" class="subscription" value="0"></td>
+          <td><input type="number" class="walkIn" value="0"></td>
+          <td class="totalExpense">0.00</td>
+          <td class="totalIncome">0.00</td>
+        </tr>
+        <tr>
+          <td>September</td>
+          <td><input type="number" class="waterBill" value="0"></td>
+          <td><input type="number" class="electricBill" value="0"></td>
+          <td><input type="number" class="drinkableWaterBill" value="0"></td>
+          <td><input type="number" class="productSales" value="0"></td>
+          <td><input type="number" class="subscription" value="0"></td>
+          <td><input type="number" class="walkIn" value="0"></td>
+          <td class="totalExpense">0.00</td>
+          <td class="totalIncome">0.00</td>
+        </tr>
+        <tr>
+          <td>October</td>
+          <td><input type="number" class="waterBill" value="0"></td>
+          <td><input type="number" class="electricBill" value="0"></td>
+          <td><input type="number" class="drinkableWaterBill" value="0"></td>
+          <td><input type="number" class="productSales" value="0"></td>
+          <td><input type="number" class="subscription" value="0"></td>
+          <td><input type="number" class="walkIn" value="0"></td>
+          <td class="totalExpense">0.00</td>
+          <td class="totalIncome">0.00</td>
+        </tr>
+        <tr>
+          <td>November</td>
+          <td><input type="number" class="waterBill" value="0"></td>
+          <td><input type="number" class="electricBill" value="0"></td>
+          <td><input type="number" class="drinkableWaterBill" value="0"></td>
+          <td><input type="number" class="productSales" value="0"></td>
+          <td><input type="number" class="subscription" value="0"></td>
+          <td><input type="number" class="walkIn" value="0"></td>
+          <td class="totalExpense">0.00</td>
+          <td class="totalIncome">0.00</td>
+        </tr>
+        <tr>
+          <td>December</td>
+          <td><input type="number" class="waterBill" value="0"></td>
+          <td><input type="number" class="electricBill" value="0"></td>
+          <td><input type="number" class="drinkableWaterBill" value="0"></td>
+          <td><input type="number" class="productSales" value="0"></td>
+          <td><input type="number" class="subscription" value="0"></td>
+          <td><input type="number" class="walkIn" value="0"></td>
+          <td class="totalExpense">0.00</td>
+          <td class="totalIncome">0.00</td>
+        </tr>
+  </table>
+  <!-- Total Yearly Expenses and Income -->
+  <table id="yearlyTotalTable">
+    <tr>
+      <td>Total Yearly Expenses:</td>
+      <td id="totalYearlyExpenses">0.00</td>
+    </tr>
+    <tr>
+      <td>Total Yearly Income:</td>
+      <td id="totalYearlyIncome">0.00</td>
+    </tr>
+  </table>
+
+  <h2>Yearly Profit: <span id="yearlyProfit">0.00</span></h2>
+  <button class="btn btn-success" id="saveButton">Save Monthly Transactions</button>
+  </form>
+  </main>
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="/assets/vendor/echarts/echarts.min.js"></script>
+  <script src="/assets/vendor/quill/quill.min.js"></script>
+  <script src="/assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/assets/js/main.js"></script>
+  <script>
+    accounting.settings = {
+      currency: {
+        symbol: "₱",
+        format: "%s%v",
+        decimal: ".",
+        thousand: ",",
+        precision: 2
+      },
+      number: {
+        precision: 2,
+        thousand: ",",
+        decimal: "."
+      }
+    };
+    // Fetch the admin name from the server using the Fetch API
+  fetch('/getLoggedInAdminName')
+    .then(response => response.json())
+    .then(data => {
+      // Update the HTML content with the admin name
+      document.getElementById('adminNamePlaceholder').textContent = data.name;
+      document.getElementById('adminNameHeader').textContent = data.name;
+    })
+    .catch(error => console.error('Error fetching admin name:', error));
+  
+    document.addEventListener('DOMContentLoaded', async (event) => {
+      // Function to fetch monthly transactions from the server
+      async function getMonthlyTransactions() {
+        try {
+          const response = await fetch('/getMonthlyTransactions');
+          const data = await response.json();
+          return data.monthlyData;
+        } catch (error) {
+          console.error('Error fetching monthly transactions:', error);
+          return [];
+        }
+      }
+  
+      // Function to display monthly transactions on the form table
+      async function displayMonthlyTransactions() {
+        const monthlyData = await getMonthlyTransactions();
+  
+        if (monthlyData.length === 0) {
+          console.log('No monthly data available.');
+          return;
+        }
+  
+        const rows = document.querySelectorAll('#monthlyTable tr:not(:first-child)');
+  
+        monthlyData.forEach((data, index) => {
+          const row = rows[index];
+          row.querySelector('.waterBill').value = data.waterBill || 0;
+          row.querySelector('.electricBill').value = data.electricBill || 0;
+          row.querySelector('.drinkableWaterBill').value = data.drinkableWaterBill || 0;
+          row.querySelector('.productSales').value = data.productSales || 0;
+          row.querySelector('.subscription').value = data.subscription || 0;
+          row.querySelector('.walkIn').value = data.walkIn || 0;
+        });
+  
+        calculateTransactions(); // Recalculate totals
+      }
+  
+      // Function to calculate and update transactions
+      function calculateTransactions() {
+        var rows = document.querySelectorAll('#monthlyTable tr:not(:first-child)');
+  
+        var totalExpenses = 0;
+        var totalIncome = 0;
+  
+        rows.forEach(function (row) {
+          var expenseInputs = row.querySelectorAll('.waterBill, .electricBill, .drinkableWaterBill');
+          var incomeInputs = row.querySelectorAll('.productSales, .subscription, .walkIn');
+  
+          var monthlyExpense = 0;
+          var monthlyIncome = 0;
+  
+          expenseInputs.forEach(function (input) {
+            // Ensure the input value is not negative
+            var value = parseFloat(input.value) || 0;
+            value = Math.max(value, 0);
+            monthlyExpense += value;
+            input.value = value; // Update the input field with non-negative value
+          });
+  
+          incomeInputs.forEach(function (input) {
+            // Ensure the input value is not negative
+            var value = parseFloat(input.value) || 0;
+            value = Math.max(value, 0);
+            monthlyIncome += value;
+            input.value = value; // Update the input field with non-negative value
+          });
+  
+          totalExpenses += monthlyExpense;
+          totalIncome += monthlyIncome;
+  
+          row.querySelector('.totalExpense').textContent = accounting.formatMoney(monthlyExpense);
+          row.querySelector('.totalIncome').textContent = accounting.formatMoney(monthlyIncome);
+        });
+  
+        var yearlyProfit = totalIncome - totalExpenses;
+        document.getElementById("yearlyProfit").textContent = accounting.formatMoney(yearlyProfit);
+  
+        // Update total yearly expenses and total yearly income
+        document.getElementById("totalYearlyExpenses").textContent = accounting.formatMoney(totalExpenses);
+        document.getElementById("totalYearlyIncome").textContent = accounting.formatMoney(totalIncome);
+      }
+  
+      // Function to save monthly transactions to the server
+      async function saveMonthlyTransactions() {
+        // Collect data from the form
+        var rows = document.querySelectorAll('#monthlyTable tr:not(:first-child)');
+        var monthlyData = [];
+  
+        rows.forEach(function (row) {
+          var month = row.querySelector('td').textContent;
+          var expenseInputs = row.querySelectorAll('.waterBill, .electricBill, .drinkableWaterBill');
+          var incomeInputs = row.querySelectorAll('.productSales, .subscription, .walkIn');
+  
+          var monthlyExpense = 0;
+          var monthlyIncome = 0;
+  
+          expenseInputs.forEach(function (input) {
+            var value = parseFloat(input.value) || 0;
+            monthlyExpense += Math.max(value, 0);
+          });
+  
+          incomeInputs.forEach(function (input) {
+            var value = parseFloat(input.value) || 0;
+            monthlyIncome += Math.max(value, 0);
+          });
+  
+          monthlyData.push({
+            month: month,
+            waterBill: parseFloat(row.querySelector('.waterBill').value) || null,
+            electricBill: parseFloat(row.querySelector('.electricBill').value) || null,
+            drinkableWaterBill: parseFloat(row.querySelector('.drinkableWaterBill').value) || null,
+            productSales: parseFloat(row.querySelector('.productSales').value) || null,
+            subscription: parseFloat(row.querySelector('.subscription').value) || null,
+            walkIn: parseFloat(row.querySelector('.walkIn').value) || null,
+            monthlyExpense: monthlyExpense,
+            monthlyIncome: monthlyIncome,
+          });
+        });
+  
+        // Send data to the server
+        try {
+          const response = await fetch('/saveMonthlyTransactions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ monthlyData: monthlyData }),
+          });
+  
+          const data = await response.json();
+          console.log('Monthly transactions saved:', data);
+          Swal.fire({
+            icon: 'success',
+            title: 'Monthly transactions saved',
+          });
+        } catch (error) {
+          console.error('Error saving monthly transactions:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Failed to save monthly transactions',
+          });
+          // You can add any error handling here
+        }
+      }
+  
+      // Add event listeners to all input fields
+      const inputs = document.querySelectorAll('#monthlyTable input');
+      inputs.forEach((input) => {
+        input.addEventListener('input', calculateTransactions);
+      });
+  
+      // Add event listener for the save button
+      const saveButton = document.getElementById('saveButton');
+      saveButton.addEventListener('click', async (event) => {
+        event.preventDefault(); // Prevent the default form submission
+        await saveMonthlyTransactions();
+        await displayMonthlyTransactions(); // Update displayed data after saving
+      });
+  
+      // Initial calculation
+      calculateTransactions();
+  
+      // Display monthly transactions when the page loads
+      await displayMonthlyTransactions();
+    });
+  </script>  
+</body>
+
+</html>

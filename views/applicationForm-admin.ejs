@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Admin - Application Form</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/icon/stretch-icon.png" rel="icon">
+  <link href="/icon/stretch-icon.png" rel="apple-touch-icon">
+
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+  <script src="/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- JQuery DataTable Css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+
+  <!-- Template Main CSS File -->
+  <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <%- include("partials/admin/header") %>
+    <!-- End Header -->
+
+    <!-- ======= Sidebar ======= -->
+    <%- include("partials/admin/sidebar") %>
+      <!-- End Sidebar-->
+
+      <main id="main" class="main">
+
+        <div class="pagetitle">
+          <h1>Members Registration</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+              <li class="breadcrumb-item active">Members Registration</li>
+            </ol>
+          </nav>
+        </div><!-- End Page Title -->
+
+        <div class="">
+          <section class="section">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">User Table</h5>
+                <table id="user-table" class="table table-striped" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                    </tr>
+                  </thead>
+                  <tbody id="userTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Member Registration</h5>
+                <form action="/submit-membership" method="post" id="membershipForm">
+                  <div class="row">
+                    <div class="mb-3 col-sm-6">
+                      <label for="first_name" class="form-label">First Name</label>
+                      <input type="text" class="form-control" id="first_name" name="firstName" required>
+                    </div>
+                    <div class="mb-3 col-sm-6">
+                      <label for="last_name" class="form-label">Last Name</label>
+                      <input type="text" class="form-control" id="last_name" name="lastName" required>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-3 col-sm-6">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3 col-sm-6">
+                      <label for="contactNumber" class="form-label">Contact No.</label>
+                      <input type="tel" class="form-control" id="contactNumber" name="contactNumber"
+                        pattern="[0-9]{1,11}">
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <div class="mb-3 col-sm-6">
+                      <label for="membershipType" class="form-label">Plan</label>
+                      <select class="form-select" id="membershipType" name="membershipType" required>
+                        <option value="" selected>Select Membership Plan</option>
+                        <option value="regular">Regular</option>
+                        <option value="student">Student</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-end">
+                    <div>
+                      <button class="btn btn-success" type="submit" id="submitMembershipButton" disabled>Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+      <!-- ======= Footer ======= -->
+      <%- include("partials/admin/footer") %>
+        <!-- End Footer -->
+
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+        <!-- Vendor JS Files -->
+        <script src="/assets/vendor/apexcharts/apexcharts.min.js"></script>
+        <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/vendor/chart.js/chart.umd.js"></script>
+        <script src="/assets/vendor/echarts/echarts.min.js"></script>
+        <script src="/assets/vendor/quill/quill.min.js"></script>
+        <script src="/assets/vendor/tinymce/tinymce.min.js"></script>
+        <script src="/assets/vendor/php-email-form/validate.js"></script>
+
+        <!-- Template Main JS File -->
+        <script src="/assets/js/main.js"></script>
+
+        <!-- JQuery DataTable -->
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+        <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+        <script src="/js/table_script.js"></script>
+        <script>
+          $(document).ready(function () {
+                // Add event listener for the 'firstNameForm' input
+                document.getElementById('first_name').addEventListener('input', function() {
+                  // Remove non-letter and non-space characters
+                  this.value = this.value.replace(/[^A-Za-z -]/g, '');
+
+                  // Remove spaces at the beginning and hyphen at the beginning
+                  this.value = this.value.replace(/^\s+/, '').replace(/^-/, '');
+
+                  // Limit the length if needed
+                  var maxLength = 30; // You can set the desired maximum length
+                  if (this.value.length > maxLength) {
+                    this.value = this.value.slice(0, maxLength);
+                  }
+                });
+
+              document.getElementById('last_name').addEventListener('input', function() {
+              // Remove non-letter and non-space characters
+                this.value = this.value.replace(/[^A-Za-z -]/g, '');
+
+                // Remove spaces at the beginning and hyphen at the beginning
+                this.value = this.value.replace(/^\s+/, '').replace(/^-/, '');
+
+                // Limit the length if needed
+                var maxLength = 30; // You can set the desired maximum length
+                if (this.value.length > maxLength) {
+                  this.value = this.value.slice(0, maxLength);
+                }
+              });
+              document.getElementById('email').addEventListener('input', function () {
+              // Remove non-letter, non-number, and non-space characters
+                this.value = this.value.replace(/[^A-Za-z0-9@.-]/g, '');
+
+                // Remove spaces at the beginning and hyphen at the beginning
+                this.value = this.value.replace(/^\s+/, '').replace(/^-/, '');
+
+                // Limit the length if needed
+                var maxLength = 40; // You can set the desired maximum length
+                if (this.value.length > maxLength) {
+                  this.value = this.value.slice(0, maxLength);
+                }
+              });
+            // Initialize DataTable on document ready
+            const userTable = $('#user-table').DataTable({
+            });
+
+            // Fetch the admin name from the server using the Fetch API
+            fetch('/getLoggedInAdminName')
+              .then(response => response.json())
+              .then(data => {
+                // Update the HTML content with the admin name
+                document.getElementById('adminNamePlaceholder').textContent = data.name;
+                document.getElementById('adminNameHeader').textContent = data.name;
+              })
+              .catch(error => console.error('Error fetching admin name:', error));
+
+            $('#contactNumber').on('input', function () {
+              // Remove non-numeric characters
+              $(this).val(function (_, value) {
+                return value.replace(/\D/g, '');
+              });
+
+              // Limit the length to 11 digits
+              var maxLength = 11;
+              if ($(this).val().length > maxLength) {
+                $(this).val($(this).val().slice(0, maxLength));
+              }
+            });
+
+            // Function to fetch and populate user data
+            function fetchAndPopulateUsers() {
+              $.ajax({
+                url: '/getAllUsers',
+                method: 'GET',
+                dataType: 'json',
+                success: function (users) {
+                  const userTableBody = $('#userTableBody');
+                  userTable.clear().draw(); // Clear and draw DataTable
+
+                  users.forEach(user => {
+                    if (!user.subscribedUserId) {
+                      const newRow = [`${user.firstName} ${user.lastName}`];
+                      const $row = userTable.row.add(newRow).draw().node();
+                      $($row).addClass('user-row');  // Add the user-row class
+                      $($row).data('user-id', user.id); // Store user ID as data attribute
+                    }
+                  });
+                },
+                error: function (error) {
+                  console.error('Error fetching user data:', error);
+                }
+              });
+            }
+            // Function to fetch user information and check subscription status
+            function fetchUserInfoAndCheckSubscription(userId) {
+              $.ajax({
+                url: `/getUserInfo/${userId}`,
+                method: 'GET',
+                dataType: 'json',
+                success: function (userData) {
+                  $('#membershipForm').find('[name="firstName"]').val(userData.firstName);
+                  $('#membershipForm').find('[name="lastName"]').val(userData.lastName);
+                  $('#membershipForm').find('[name="membershipType"]').val(userData.membershipType);
+                  $('#membershipForm').find('[name="email"]').val(userData.email);
+                  $('#membershipForm').find('[name="contactNumber"]').val(userData.contactNumber);
+                  // Check if the user is already subscribed
+                  $.ajax({
+                    url: `/checkSubscription/${userId}`,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                      if (response.subscribed) {
+                        console.log('User is already subscribed');
+                        $('#submitMembershipButton').prop('disabled', true);
+                      } else {
+                        console.log('User is not subscribed');
+                        $('#submitMembershipButton').prop('disabled', false);
+                      }
+                    },
+                    error: function (error) {
+                      console.error('Error checking subscription:', error);
+                    }
+                  });
+                },
+                error: function (error) {
+                  console.error('Error fetching user information:', error);
+                }
+              });
+            }
+
+            // Initial fetch and populate on document ready
+            fetchAndPopulateUsers();
+
+            // Event delegation for clickable names
+            $('#userTableBody').on('click', 'tr', function () {
+              $('#userTableBody tr').removeClass('active');
+              $(this).addClass('active');
+              const userId = $(this).data('user-id');
+              fetchUserInfoAndCheckSubscription(userId);
+            });
+
+            // Submit the membership form
+            $('#membershipForm').submit(function (event) {
+              event.preventDefault();
+              const userId = $('.user-row.active').data('user-id');
+              const formData = $(this).serialize();
+              let url, method;
+
+              if (userId) {
+                url = `/submitMembership/${userId}`;
+                method = 'POST';
+              } else {
+                url = '/createUser';
+                method = 'POST';
+              }
+
+              $.ajax({
+                url: url,
+                method: method,
+                data: formData,
+                success: function (response) {
+                  if (response.success) {
+                    console.log('Form submitted successfully');
+                    $('#membershipForm')[0].reset();
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'Membership submitted successfully',
+                    });
+                    fetchAndPopulateUsers();
+                  } else {
+                    if (response.message && response.message.toLowerCase().includes('already subscribed')) {
+                      Swal.fire({
+                      icon: 'info',
+                      title: 'User is already subscribed',
+                      showConfirmButton: false,
+                      timer: 1000, 
+                      });
+                    } else {
+                      Swal.fire({
+                        icon: 'error',
+                        title: 'Error submitting membership',
+                        text: 'Please try again.',
+                      });
+                    }
+                  }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                  console.error('Error submitting membership:', textStatus, errorThrown);
+                  console.log('Server response:', jqXHR.responseText); // Log the full response
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Error submitting membership',
+                    text: 'Please try again.',
+                  });
+                }
+              });
+            });
+
+            // Add a click event listener to the common ancestor (userTableBody)
+            $('#userTableBody').on('click', '.clickable-name', function () {
+              $('#userTableBody .user-row').removeClass('active');
+              $(this).closest('.user-row').addClass('active');
+              const userId = $(this).closest('.user-row').data('user-id');
+              fetchUserInfoAndCheckSubscription(userId);
+            });
+
+            // Enable or disable the submit button based on form validity and blank/whitespace check
+            $('#membershipForm').on('input', function () {
+            const firstName = $('#first_name').val().trim();
+            const lastName = $('#last_name').val().trim();
+
+            // Check if both first name and last name are not blank or full of spaces
+            const formValid = this.checkValidity() && firstName !== '' && lastName !== '';
+            $('#submitMembershipButton').prop('disabled', !formValid);
+            });
+          });
+        </script>
+</body>
+
+</html>

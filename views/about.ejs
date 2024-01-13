@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <!-- Favicons -->
+  <link href="/icon/stretch-icon.png" rel="icon">
+  <link href="/icon/stretch-icon.png" rel="apple-touch-icon">
+
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+  <script src="/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+  <title>Stretch Fitness Hub - About</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap"
+    rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="../css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="../css/responsive.css" rel="stylesheet" />
+</head>
+
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section strats -->
+    <%- include("partials/header") %>
+    <!-- end header section -->
+    <!-- slider section -->
+    <section class=" slider_section position-relative">
+      <div class="container">
+        <div class="custom_nav2">
+          <nav class="navbar navbar-expand-lg custom_nav-container ">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div class="d-flex  flex-column flex-lg-row align-items-center">
+                <ul class="navbar-nav  ">
+                  <li class="nav-item">
+                    <a class="nav-link" href="home">Home</a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="about">About </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="facility">Facility</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="plan">Plan</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="faqs">FAQs</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="contact">Visit Us</a>
+                  </li>
+                  <!--<li class="nav-item">
+                    <a class="nav-link" href="register">Sign Up</a>
+                  </li>-->
+                  <li class="nav-item">
+                    <a class="nav-link" href="login">Login</a>
+                  </li>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </section>
+    <!-- end slider section -->
+  </div>
+
+  <!-- about section -->
+  <section class="about_section layout_padding" id="about_section" style="background-color: #fff;">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          About Stretch Fitness Hub
+        </h2>
+      </div>
+      <div class="box">
+        <div class="img-box my-3">
+          <img src="images/stretch_fitness_hub_transparent.png" alt="">
+        </div>
+        <div class="detail-box mt-5 text-center">
+          <p>
+            Welcome to <span class="attention">Stretch Fitness Hub</span>, where fitness meets community! At our gym, we
+            believe in the power of
+            self-motivation
+            and personal growth. Our modern facilities provide everything you need for a fulfilling workout experience,
+            from
+            top-notch equipment to a welcoming atmosphere. Whether you're a seasoned fitness enthusiast or just starting
+            your
+            journey, Stretch Fitness Hub is the place where you can embrace a healthier lifestyle on your terms. Join us,
+            and let
+            the gym be your space for self-discovery and progress.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end about section -->
+
+  <!-- info section -->
+  <%- include("partials/info") %>
+  <!-- end info section -->
+  
+  <!-- footer section -->
+  <%- include("partials/footer") %>
+  <!-- footer section -->
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+
+  <script>
+    function openNav() {
+      document.getElementById("myNav").classList.toggle("menu_width");
+      document
+        .querySelector(".custom_menu-btn")
+        .classList.toggle("menu_btn-style");
+    }
+  </script>
+</body>
+
+</html>

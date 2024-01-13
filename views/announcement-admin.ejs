@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Admin - Announcement</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/icon/stretch-icon.png" rel="icon">
+  <link href="/icon/stretch-icon.png" rel="apple-touch-icon">
+
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+  <script src="/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- JQuery DataTable Css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+  <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+  <!-- Template Main CSS File -->
+  <link href="/assets/css/style.css" rel="stylesheet">
+
+ 
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <%- include("partials/admin/header") %>
+  <!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <%- include("partials/admin/sidebar") %>
+  <!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Announcement</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+          <li class="breadcrumb-item active">Announcement</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <!-- Announcement Form -->
+<section class="section">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Create Announcement</h5>
+      <form id="announcementForm">
+        <div class="row">
+          <div class="mb-3 col-sm-6">
+            <label for="category" class="form-label">Category</label>
+            <input type="text" class="form-control" id="category" name="category" maxlength="30" required>
+          </div>
+          <div class="mb-3 col-sm-6">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" maxlength="30" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-floating mb-5">
+            <textarea class="form-control" id="content" name="content" placeholder="Leave a comment here" rows="4" maxlength="300" required></textarea>
+            <label for="content">Content</label>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end">
+          <div>
+            <button class="btn btn-success" type="submit" onclick="submitAnnouncement(event)">Post Announcement</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+    <!-- End Announcement Form -->
+
+    <!-- Announcement Section -->
+<!-- Announcement Section -->
+<section class="section mt-5">
+  <div class="">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body text-center p-0" style="padding-top: 20px;">
+            <h2 class="card-title">Announcements</h2>
+            
+          </div>
+          <div class="card-body">
+          <table id="announcementTable"  class="table table-striped" style="width:100%">
+            <thead>
+              <tr>
+                <th style="width: 50px;">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="selectAllCheckbox" onchange="selectAll()">
+                    <button class="btn btn-danger btn-sm me-2" onclick="confirmDelete()">Delete</button>
+                  </div>
+                </th>
+                <th>Category</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="announcementsList"></tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    <!-- End Announcement Section -->
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <%- include("partials/admin/footer") %>
+  <!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="/assets/vendor/echarts/echarts.min.js"></script>
+  <script src="/assets/vendor/quill/quill.min.js"></script>
+  <script src="/assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/assets/js/main.js"></script>
+
+  <!-- JQuery DataTable -->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<script src="/js/table_script.js"></script>
+
+<script>
+  
+  $(document).ready(function () {
+  // Initialize DataTable with select option
+  $('#announcementTable').DataTable({
+    select: {
+      style: 'multi',
+      selector: 'td:first-child', // Select the first column (checkbox) for multi-select
+    },
+    columnDefs: [
+      { orderable: false, targets: 0 }, // Disable sorting for the first column (checkbox)
+    ],
+  });
+});
+
+  // Fetch the admin name from the server using the Fetch API
+  fetch('/getLoggedInAdminName')
+    .then(response => response.json())
+    .then(data => {
+      // Update the HTML content with the admin name
+      document.getElementById('adminNamePlaceholder').textContent = data.name;
+      document.getElementById('adminNameHeader').textContent = data.name;
+    })
+    .catch(error => console.error('Error fetching admin name:', error));
+
+// Update the "Post Announcement" button status on input changes
+document.getElementById('category').addEventListener('input', updatePostButtonStatus);
+    document.getElementById('title').addEventListener('input', updatePostButtonStatus);
+    document.getElementById('content').addEventListener('input', updatePostButtonStatus);
+
+    // Disable the "Post Announcement" button by default
+    updatePostButtonStatus();
+
+    async function fetchAnnouncements() {
+    try {
+        const response = await fetch('/get_announcements');
+        const announcements = await response.json();
+        const table = $('#announcementTable').DataTable();
+        table.clear().draw(); // Clear existing rows before adding new ones
+
+        announcements.forEach((announcement) => {
+            const rowData = [
+                '<input type="checkbox" class="form-check-input delete-checkbox">',
+                announcement.category,
+                announcement.title,
+                announcement.content,
+                new Date().toLocaleDateString(),
+            ];
+
+            table.row.add(rowData).node().setAttribute('data-id', announcement.id);
+        });
+
+        table.draw(); // Draw the updated table
+    } catch (error) {
+        console.error('Error fetching announcements:', error.message);
+    }
+}
+
+async function submitAnnouncement(event) {
+  event.preventDefault();
+
+  const category = document.getElementById("category").value;
+  const title = document.getElementById("title").value;
+  const content = document.getElementById("content").value;
+
+  try {
+    const response = await fetch('/submit_announcement', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ category, title, content }),
+    });
+
+    const data = await response.json();
+    console.log('Data output', data);
+    if (response.ok) {
+  Swal.fire({
+    icon: 'success',
+    title: 'Announcement posted successfully!',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Check if DataTable with Select extension is initialized
+      const table = $('#announcementTable').DataTable();
+      if ($.fn.DataTable.isDataTable('#announcementTable') && $.fn.dataTable.select) {
+        table.rows().deselect();
+
+        // Fetch the updated announcements and redraw the DataTable
+        fetchAnnouncements().then(() => {
+          // Reload the window after DataTable is redrawn
+          window.location.reload();
+        });
+      } else {
+        console.warn('DataTables Select extension not initialized.');
+        // Reload the window without waiting for DataTable redraw
+        window.location.reload();
+      }
+    }
+  });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: data.error || 'Internal Server Error',
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    }
+  } catch (error) {
+    console.error('Error submitting announcement:', error.message);
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'An error occurred while submitting the announcement. Please try again.',
+      showConfirmButton: false,
+      timer: 1000,
+    });
+  }
+}
+
+function updatePostButtonStatus() {
+      // Get the form field values
+      const categoryValue = document.getElementById("category").value.trim();
+      const titleValue = document.getElementById("title").value.trim();
+      const contentValue = document.getElementById("content").value.trim();
+
+      // Get the "Post Announcement" button
+      const postButton = document.querySelector('#announcementForm button[type="submit"]');
+
+      // Update the disabled status based on form field values
+      postButton.disabled = categoryValue === '' || titleValue === '' || contentValue === '' || containsOnlySpaces(categoryValue) || containsOnlySpaces(titleValue) || containsOnlySpaces(contentValue);
+    }
+
+    function containsOnlySpaces(str) {
+      return str.replace(/\s/g, '').length === 0;
+    }
+
+  async function updateAnnouncementsSelection() {
+    const announcements = $('#announcementTable tbody tr');
+    announcements.toggleClass('selectable', editMode || deleteMode);
+    announcements.click(function () {
+      handleAnnouncementClick($(this));
+    });
+  }
+
+  let editMode = false;
+  let deleteMode = false;
+
+    // Handle select all checkbox
+    function selectAll() {
+      const selectAllCheckbox = $('#selectAllCheckbox');
+      const checkboxes = $('.delete-checkbox');
+
+      checkboxes.prop('checked', selectAllCheckbox.prop('checked'));
+    }
+
+    // Handle delete button click
+function confirmDelete() {
+  const selectedRows = $('#announcementTable tbody tr').has('.delete-checkbox:checked');
+
+  if (selectedRows.length > 0) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const deletePromises = []; // Array to hold all delete promises
+
+        selectedRows.each(function () {
+          const currentRow = $(this); // Store the current row in a variable
+
+          const announcementId = currentRow.data('id');
+          const deletePromise = fetch(`/delete_announcement/${announcementId}`, {
+            method: 'DELETE',
+          })
+            .then(response => {
+              if (response.ok) {
+                const table = $('#announcementTable').DataTable();
+                table.row(currentRow).remove().draw(); // Remove the row from DataTable
+              } else {
+                console.error('Error deleting announcement');
+              }
+            })
+            .catch(error => console.error('Error deleting announcement:', error));
+
+          deletePromises.push(deletePromise); // Add the delete promise to the array
+        });
+
+        // Wait for all delete operations to complete before reloading the page
+        Promise.all(deletePromises).then(() => {
+          window.location.reload();
+          Swal.fire(
+            'Deleted!',
+            'Your announcements have been deleted.',
+            'success'
+          );
+        });
+
+        selectedRows.find('.delete-checkbox').prop('checked', false);
+      }
+    });
+  } else {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Warning',
+      text: 'Please select announcements to delete.',
+      showConfirmButton: false,
+      timer: 1000,
+    });
+  }
+}
+
+  window.onload = fetchAnnouncements;
+</script>
+
+</body>
+</html>

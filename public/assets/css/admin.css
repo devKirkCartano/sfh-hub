@@ -1,0 +1,125 @@
+/* Admin Login */
+
+button#signin{
+  background-color: #c0a68d;
+  border-color: #c0a68d;
+}
+
+button#signin:hover {
+  background-color: #896247;
+  border-color: #896247;
+}
+
+button#signin:active {
+  background-color: #311b0e;
+  border-color: #311b0e;
+}
+
+#login-bg {
+  background: url("/images/stretch.png");
+  background-size: cover;
+}
+
+.login-card {
+  color: white;
+  font-weight: bold;
+  background-color: rgba(255,255,255, 0.4);
+}
+
+.login-card h5 {
+  font-weight: bold;
+}
+
+.login-card .heading {
+  color: white;
+}
+
+.login-card a {
+  color: white;
+}
+
+.login-card a:hover {
+  color: #896247;
+}
+
+.login-card a:active {
+  color:#311b0e;
+}
+
+.form-control,.form-control:focus {
+  color:#be9b7b;
+}
+/* End Admin Login */
+
+/* Admin Register */
+button#signup{
+  background-color: #c0a68d;
+  border-color: #c0a68d;
+}
+
+button#signup:hover {
+  background-color: #896247;
+  border-color: #896247;
+}
+
+button#signup:active {
+  background-color: #311b0e;
+  border-color: #311b0e;
+}
+
+#register-bg {
+  background: url("/images/stretch.png");
+  background-size: cover;
+}
+
+.register-card {
+  color: black;
+  font-weight: bold;
+  background-color: rgba(255,255,255, 0.4);
+}
+
+.register-card h5 {
+  font-weight: bold;
+}
+
+.register-card .heading {
+  color: black;
+}
+
+.register-card a {
+  color: black;
+}
+
+.register-card a:hover {
+  color: #896247;
+}
+
+.register-card a:active {
+  color:#311b0e;
+}
+/* End Admin Register */
+
+/* Toggle Show Password */
+.password-container {
+  position: relative;
+}
+
+.eye-icon-reg {
+  position: absolute;
+  top: 63%;
+  right: 5%;
+  cursor: pointer;
+}
+
+.eye-icon-login {
+  position: absolute;
+  top: 57%;
+  right: 4%;
+  cursor: pointer;
+}
+/* End Toggle Show Password */
+
+/* Removed default toggle icon in edge */
+::-ms-reveal {
+  display: none;
+}

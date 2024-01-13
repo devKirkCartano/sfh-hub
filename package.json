@@ -1,0 +1,37 @@
+{
+  "name": "prototype",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start-user": "nodemon server.js",
+    "start-admin": "nodemon serverAdmin.js",
+    "start:both": "concurrently \"npm:start-user\" \"npm:start-admin\""
+  },
+  "author": "me",
+  "license": "ISC",
+  "dependencies": {
+    "accounting": "^0.4.1",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "client-announcements-node": "^1.0.*",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-flash": "^0.0.2",
+    "express-mysql-session": "^3.0.0",
+    "express-session": "^1.17.3",
+    "moment": "^2.29.4",
+    "mongoose": "^8.0.0",
+    "mysql2": "^3.6.3",
+    "node-cron": "^3.0.3",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "qrcode": "^1.5.3",
+    "sweetalert2": "^11.10.1"
+  },
+  "devDependencies": {
+    "html5-qrcode": "^2.3.8"
+  }
+}

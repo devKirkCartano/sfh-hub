@@ -1,0 +1,258 @@
+#logo {
+  max-height: 42px;
+}
+
+.brand-name {
+  font-size: 0.75rem !important;
+}
+
+#table-bg,
+#table-header,
+.dashboard-card,
+.graph-bg,
+.header-graph,
+.o-hidden {
+  background: var(--bs-border-color-translucent);
+}
+
+.bg-login-image,
+.bg-password-image,
+.bg-register-image {
+  background-position: center;
+  background-size: contain;
+  /* opacity: 0.5; */
+}
+
+#login-bg {
+  background-color: white;
+  background-image: url("../img/imported_images/login-bg.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.text-dark {
+  --bs-text-opacity: 1;
+  color: #fff !important;
+}
+
+.card-body {
+  color: #fff;
+}
+
+a {
+  color: #be9b7b;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #896247;
+  text-decoration: none;
+}
+
+#signup,
+#signin {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #c0a68d;
+  --bs-btn-border-color: #c0a68d;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #896247;
+  --bs-btn-hover-border-color: #896247;
+  --bs-btn-focus-shadow-rgb: 105, 136, 228;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #311b0e;
+  --bs-btn-active-border-color: #311b0e;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #c0a68d;
+  --bs-btn-disabled-border-color: #c0a68d;
+}
+/* #register-bg {
+  background: url("../img/imported_images/register-bg.jpeg")
+    center/cover;
+} */
+
+#forgot-pass-bg {
+  background: url("../img/imported_images/forgot-pass-bg.jpg") top/cover;
+}
+
+#btn-forgot-pass {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #c0a68d;
+  --bs-btn-border-color: #c0a68d;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #896248;
+  --bs-btn-hover-border-color: #896252;
+  --bs-btn-focus-shadow-rgb: 105, 136, 228;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #311b0e;
+  --bs-btn-active-border-color: #311b0e;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #c0a68d;
+  --bs-btn-disabled-border-color: #c0a68d;
+}
+
+#wrapper #content-wrapper #content,
+.bg-white {
+  background: #c0a68d;
+  background: radial-gradient(circle, #c0a68d 0, #896247 50%, #311b0e 100%);
+}
+
+#name,
+.card-text,
+.graph-text,
+.icon-color,
+.text-dashboard,
+.title-page-text {
+  color: #f4dd9c !important;
+}
+
+#sidebar-left {
+  background: #c0a68d;
+  background: radial-gradient(circle, #c0a68d 0, #896247 50%, #311b0e 100%);
+  background-size: cover;
+}
+
+.form-check-input:checked {
+  background-color: #c0a68d;
+  border-color: #c0a68d;
+}
+
+.form-control:focus {
+  border-color: #c39c6e;
+  box-shadow: 0 0 0 0.25rem #c0a68d;
+}
+
+#btn-gen-report,
+.btn-save {
+  --bs-btn-color: #f4dd9c;
+  --bs-btn-bg: radial-gradient(
+    circle,
+    rgba(192, 166, 141, 1) 0%,
+    rgba(137, 98, 71, 1) 50%,
+    rgba(49, 27, 14, 1) 100%
+  );
+  --bs-btn-border-color: #f4dd9c;
+  --bs-btn-hover-color: #f4dd9c;
+  --bs-btn-hover-bg: #896247;
+  --bs-btn-hover-border-color: #896247;
+  --bs-btn-focus-shadow-rgb: 105, 136, 228;
+  --bs-btn-active-color: #f4dd9c;
+  --bs-btn-active-bg: #311b0e;
+  --bs-btn-active-border-color: #311b0e;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #f4dd9c;
+  --bs-btn-disabled-bg: #c0a68d;
+  --bs-btn-disabled-border-color: #c0a68d;
+}
+
+#btn-search {
+  --bs-btn-color: #f4dd9c;
+  --bs-btn-bg: radial-gradient(
+    circle,
+    rgba(192, 166, 141, 1) 0%,
+    rgba(137, 98, 71, 1) 50%,
+    rgba(49, 27, 14, 1) 100%
+  );
+  --bs-btn-border-color: #c0a68d;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #896247;
+  --bs-btn-hover-border-color: #896247;
+  --bs-btn-focus-shadow-rgb: 105, 136, 228;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #311b0e;
+  --bs-btn-active-border-color: #311b0e;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #c0a68d;
+  --bs-btn-disabled-border-color: #c0a68d;
+}
+
+.card-text .text-primary,
+.gen-report-color,
+.socmed-icon:hover {
+  color: #f4dd9c;
+}
+
+.copyright-text {
+  color: #f4dd9c;
+  font-weight: 900;
+}
+
+.dropdown .dropdown-list .dropdown-header {
+  background: radial-gradient(circle, #c0a68d 0, #896247 50%, #311b0e 100%);
+  border: 1px solid #f4dd9c;
+}
+
+.pagination {
+  --bs-pagination-padding-x: 0.75rem;
+  --bs-pagination-padding-y: 0.375rem;
+  --bs-pagination-font-size: 1rem;
+  --bs-pagination-color: #311b0e;
+  --bs-pagination-bg: #c0a68d;
+  --bs-pagination-border-width: 1px;
+  --bs-pagination-border-color: #dddfeb;
+  --bs-pagination-border-radius: 0.35rem;
+  --bs-pagination-hover-color: #311b0e;
+  --bs-pagination-hover-bg: #896247;
+  --bs-pagination-hover-border-color: #dddfeb;
+  --bs-pagination-focus-color: #896247;
+  --bs-pagination-focus-bg: #eaecf4;
+  --bs-pagination-focus-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-pagination-active-color: #fff;
+  --bs-pagination-active-bg: #311b0e;
+  --bs-pagination-active-border-color: #311b0e;
+  --bs-pagination-disabled-color: #858796;
+  --bs-pagination-disabled-bg: #fff;
+  --bs-pagination-disabled-border-color: #dddfeb;
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+  color: var(--bs-dropdown-link-hover-color);
+  background-color: var(--bs-dropdown-link-hover-bg);
+}
+
+.socmed-icon {
+  color: #896246;
+  margin: 0.75rem;
+  font-size: 2rem;
+}
+
+.socmed-icon:active {
+  color: #311b0e;
+}
+
+.brand-name.icon-color.brand-name-text {
+  font-style: italic;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  color: var(--bs-dropdown-link-active-color);
+  text-decoration: none;
+  background-color: #311b0e;
+}
+
+/* Toggle Show Password */
+.password-container {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  top: 65%;
+  right: 15%;
+  cursor: pointer;
+}
+/* End Toggle Show Password */
+
+/* Asterisk */
+.required::after {
+  content: " *";
+  color: #be9b7b;
+  font-size: 20px;
+}

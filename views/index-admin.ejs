@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Admin - QR Scanner</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <style>
+    #reader {
+      width: 600px;
+      margin-bottom: 20px;
+    }
+
+    #result {
+      text-align: center;
+      font-size: 1.15;
+    }
+    /* Custom style */
+    /* Center content */
+    .scanner-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+  <!-- QR code scanner library -->
+  <script src="/html5-qrcode/html5-qrcode.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+  <script src="/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+
+  <!-- Favicons -->
+  <link href="/icon/stretch-icon.png" rel="icon">
+  <link href="/icon/stretch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  
+  <!-- Template Main CSS File -->
+  <link href="/assets/css/style.css" rel="stylesheet">
+  
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <%- include("partials/admin/header") %>
+  <!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <%- include("partials/admin/sidebar") %>
+  <!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>QR Scanner</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+          <li class="breadcrumb-item active">QR Scanner</li>
+        </ol>
+      </nav>
+    </div>
+    <!-- End Page Title -->
+
+    <!-- Scanner Section -->
+    <div class="scanner-section">  
+      <!-- Display the scanned QR code data -->
+      <div id="result"></div>
+      
+      <!-- Container for the QR code scanner -->
+      <div id="reader"></div>
+
+      <!-- Scanned names table -->  
+      <section class="section w-100">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title text-center">Time In</h5>
+            <!-- Table -->
+            <table id="scannedNamesTable" class="table table-striped text-center">
+              <thead>
+                <tr>
+                  <th>Members</th>
+                  <th>Date & Time</th>
+                </tr>
+              </thead>
+              <tbody id="scannedNamesBody">
+                <!-- Scanned names will be dynamically added here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <!-- End Scanned names table -->
+    </div>
+  </main>
+  <!-- End main -->
+
+  <!-- ======= Footer ======= -->
+  <%- include("partials/admin/footer")  %>
+  <!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="/assets/vendor/echarts/echarts.min.js"></script>
+  <script src="/assets/vendor/quill/quill.min.js"></script>
+  <script src="/assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/assets/js/main.js"></script>
+
+  <script>
+    // Fetch the admin name from the server using the Fetch API
+  fetch('/getLoggedInAdminName')
+    .then(response => response.json())
+    .then(data => {
+      // Update the HTML content with the admin name
+      document.getElementById('adminNamePlaceholder').textContent = data.name;
+      document.getElementById('adminNameHeader').textContent = data.name;
+    })
+    .catch(error => console.error('Error fetching admin name:', error));
+        document.addEventListener('DOMContentLoaded', () => {
+  let lastScanTimestamp = 0; // Initialize the last scan timestamp
+
+  $.get('/getScannedNames', function (data, status) {
+    // Check if data is an array and not empty
+    if (Array.isArray(data) && data.length > 0) {
+      for (let entry of data) {
+        // Check if the entry has a timestamp property
+        const timestamp = entry.timestamp ? new Date(entry.timestamp).toLocaleString() : 'N/A';
+        const newRow = $('<tr><td>' + entry.firstName + " " + entry.lastName + '</td><td>' + timestamp + '</td></tr>');
+        $('#scannedNamesBody').append(newRow);
+      }
+    } else {
+      // Handle the case when no data is received
+      console.log('No scanned names data received');
+    }
+  });
+
+  function onScanSuccess(decodedText, decodedResult) {
+    // Extract the "Name" and "Timestamp" from the scanned data
+    const scannedData = JSON.parse(decodedText);
+    const firstName = scannedData.firstName;
+    const lastName = scannedData.lastName;
+    const email = scannedData.Email;
+
+    // Calculate the current timestamp
+    const currentTimestamp = new Date().getTime();
+
+    // Check if the same QR code was scanned within the cooldown period (e.g., 5 seconds)
+    if (currentTimestamp - lastScanTimestamp < 5000) {
+      console.log('Duplicate scan within cooldown period. Ignoring.');
+      return;
+    }
+
+    // Update the last scan timestamp
+    lastScanTimestamp = currentTimestamp;
+
+    // Call a function to authenticate against the 'users' table
+    authenticateUser(firstName, lastName, email)
+      .then(authenticated => {
+        if (authenticated) {
+          // If authentication is successful, record the name
+          fetch('/record-member-name', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ firstName, lastName, email }),
+          })
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                console.log('Scanned name recorded successfully');
+
+                // Check if the server response contains a timestamp
+                if (data.timestamp) {
+                  // Update the table with the newly scanned name and timestamp
+                  updateScannedNamesTable(firstName, lastName, data.timestamp);
+                  Swal.fire({
+                    icon: 'success',
+                    title: `Member ${firstName} is a subscribed user.`,
+                  });
+                } else {
+                  console.error('Invalid timestamp in server response');
+                }
+              } else {
+                console.error('Failed to record scanned name');
+              }
+            })
+            .catch(error => {
+              console.error('Error recording scanned name:', error.message);
+            });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Authentication failed',
+            text: `${firstName} is not a subscribed user.`,
+          });
+          console.log('Authentication failed. Name not recorded.');
+        }
+      })
+      .catch(error => {
+        console.error('Error during authentication:', error.message);
+      });
+  }
+
+  function updateScannedNamesTable(firstName, lastName, timestamp) {
+    // Format the timestamp using JavaScript Date object (adjust format as needed)
+    const formattedTimestamp = new Date(timestamp).toLocaleString();
+
+    // Create a new row with the scanned name and timestamp
+    const newRow = $('<tr><td>' + firstName + " " + lastName + '</td><td>' + formattedTimestamp + '</td></tr>');
+
+    // Append the new row to the table body
+    $('#scannedNamesBody').prepend(newRow);
+  }
+
+  let errorLoggedRecently = false;
+
+  function onScanFailure(error) {
+    if (!errorLoggedRecently) {
+      console.warn(`Code scan error = ${error}`);
+      errorLoggedRecently = true;
+
+      // Reset the flag after a delay (e.g., 5 seconds)
+      setTimeout(() => {
+        errorLoggedRecently = false;
+      }, 5000); // Adjust the delay as needed
+    }
+  }
+
+  let html5QrcodeScanner = new Html5QrcodeScanner(
+    "reader",
+    { fps: 20, qrbox: { width: 250, height: 250 } },
+    false
+  );
+
+  html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+
+  async function authenticateUser(firstName, lastName, email) {
+    // Make sure name is defined before making the request
+    if (!firstName || !lastName || !email) {
+      console.error('Error: Name or email is undefined');
+      return false;
+    }
+
+    try {
+      // Make an AJAX request to your server to authenticate against the 'users' table
+      const response = await fetch('/authenticate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ firstName, lastName, email }),
+      });
+
+      const data = await response.json();
+
+      console.log('Data output', data);
+
+      if (data.success) {
+        console.log('Authentication successful');
+        // Perform actions after successful authentication
+        return true;
+      } else {
+        console.log('Authentication failed');
+        // Handle authentication failure
+        return false;
+      }
+    } catch (error) {
+      console.error('Error during authentication:', error.message);
+      return false;
+    }
+  }
+});
+  </script>
+
+</body>
+
+</html>

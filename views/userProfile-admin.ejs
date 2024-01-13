@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Admin - Members</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/icon/stretch-icon.png" rel="icon">
+  <link href="/icon/stretch-icon.png" rel="apple-touch-icon">
+
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+  <script src="/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- JQuery DataTable Css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+
+  <!-- Template Main CSS File -->
+  <link href="/assets/css/style.css" rel="stylesheet">
+
+ 
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+    <%- include("partials/admin/header") %>
+  <!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <%- include("partials/admin/sidebar") %>
+  <!-- End Sidebar-->
+
+  <main id="main" class="main">
+    <div class="pagetitle">
+      <h1>View Members</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+          <li class="breadcrumb-item active">View Members</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <!-- Add this modified HTML to your existing document -->
+<section class="section">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">View Members</h5>
+
+      <!-- Table -->
+      <table id="userProfileTable" class="table table-striped" style="width:100%">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Membership Type</th>
+            <th>Bills (Number of Bills)</th>
+            <th>Date of Latest Subscription</th>
+            <th>Subscription Expiration</th>
+          </tr>
+        </thead>
+        <tbody id="userProfileTableBody">
+          <!-- Table body will be filled dynamically using jQuery -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+    <!-- End View Members Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <%- include("partials/admin/footer") %>
+  </footer>
+  <!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="/assets/vendor/echarts/echarts.min.js"></script>
+  <script src="/assets/vendor/quill/quill.min.js"></script>
+  <script src="/assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/assets/js/main.js"></script>
+
+  <!-- JQuery DataTable -->
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+  <script src="/js/table_script.js"></script>
+
+    <script>
+      // Fetch the admin name from the server using the Fetch API
+  fetch('/getLoggedInAdminName')
+    .then(response => response.json())
+    .then(data => {
+      // Update the HTML content with the admin name
+      document.getElementById('adminNamePlaceholder').textContent = data.name;
+      document.getElementById('adminNameHeader').textContent = data.name;
+    })
+    .catch(error => console.error('Error fetching admin name:', error));
+    $(document).ready(function () {
+        const userProfileTableBody = $('#userProfileTableBody');
+
+        // Function to format dates
+        function formatDate(dateString) {
+            if (dateString === 'pending') {
+                return 'Pending';
+            }
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString(undefined, options);
+        }
+
+        // Fetch user profile data and populate the table
+        $.get('/getUserProfileData')
+            .done(function (userProfileData) {
+                console.log('Received data from server:', userProfileData);
+
+                // Use a document fragment to avoid multiple DOM reflows
+                const fragment = document.createDocumentFragment();
+
+                userProfileData.forEach(function (userData) {
+                    // Format dates and handle 'pending'
+                    const formattedLatestDatePaid = formatDate(userData.latestDatePaid);
+                    const formattedSubscriptionExpiration = formatDate(userData.subscriptionExpiration);
+
+                    // For each user, create a new row in the fragment
+                    const row = `<tr>
+                        <td>${userData.firstName} ${userData.lastName}</td>
+                        <td>${userData.membershipType}</td>
+                        <td>${userData.numberOfBills}</td>
+                        <td>${formattedLatestDatePaid}</td>
+                        <td>${formattedSubscriptionExpiration}</td>
+                    </tr>`;
+                    fragment.appendChild($(row)[0]);  // Convert HTML string to DOM element and append to fragment
+                });
+
+                // Append all rows from the fragment to the table body
+                userProfileTableBody.append(fragment);
+
+                // Initialize DataTables once after all rows are added
+                $('#userProfileTable').DataTable();
+            })
+            .fail(function (error) {
+                console.error('Error fetching user profile data:', error);
+            });
+    });
+</script>
+
+</body>
+
+</html>

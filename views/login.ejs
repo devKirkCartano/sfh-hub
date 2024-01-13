@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <!-- Favicons -->
+  <link href="/icon/stretch-icon.png" rel="icon">
+  <link href="/icon/stretch-icon.png" rel="apple-touch-icon">
+
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="/sweetalert2/dist/sweetalert2.min.css">
+  <script src="/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+  <title>Stretch Fitness Hub - LogIn</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap"
+    rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="/css/style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.min.css">
+  <!-- responsive style -->
+  <link href="/css/responsive.css" rel="stylesheet" />
+</head>
+
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section strats -->
+  <%- include("partials/header") %>
+    <!-- end header section -->
+    <!-- slider section -->
+    <section class=" slider_section position-relative">
+      <div class="container">
+        <div class="custom_nav2">
+          <nav class="navbar navbar-expand-lg custom_nav-container ">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div class="d-flex  flex-column flex-lg-row align-items-center">
+                <ul class="navbar-nav  ">
+                  <li class="nav-item">
+                    <a class="nav-link" href="home">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="about">About </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="facility">Facility</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="plan">Plan</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="faqs">FAQs</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="contact">Visit Us</a>
+                  </li>
+                  <!--<li class="nav-item">
+                    <a class="nav-link" href="register">Sign Up</a>
+                  </li>-->
+                  <li class="nav-item active">
+                    <a class="nav-link" href="login">Login</a>
+                  </li>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </section>
+    <!-- end slider section -->
+  </div>
+
+  <!-- contact section -->
+  <section class="contact_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          <span>
+            Login
+          </span>
+        </h2>
+      </div>
+      <!-- Login Form -->
+      <div class="row justify-content-center">
+        <div class="col-md-9 col-lg-12 col-xl-10">
+          <div class="card shadow-lg o-hidden border-0 my-5 mt-0">
+            <div class="card-body p-0">
+              <div class="row">
+                <div class="col-lg-6 d-none d-lg-flex">
+                  <div class="flex-grow-1 bg-login-image"
+                    style="background-image: url('/images/stretch_fitness_hub_logo.jpg');">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="p-5">
+                    <div class="text-center">
+                      <h4 class="text-dark mb-5" style="color: #be9b7b !important;">Welcome Back!</h4>
+                    </div>
+                    <% if (message && message.length > 0) { %>
+                      <div class="error-message text-center">
+                          <strong><%= message %></strong>
+                      </div>
+                  <% } %>
+                    <form class="user" id="login-form" method="POST">
+                      <div class="mb-4">
+                        <label for="your_email" class="form-label required" style="color: #be9b7b !important;">Email Address</label>
+                        <input id="your_email" class="form-control form-control-user" type="email" aria-describedby="emailHelp" placeholder="Enter Email Address" name="email" maxlength="50" required />
+                      </div>
+                      <div class="mb-4">
+                        <div class="password-container">
+                          <label for="your_pass" class="form-label required" style="color: #be9b7b !important;">Password</label>
+                          <input id="your_pass" class="form-control form-control-user" type="password" placeholder="Password" name="password" required />
+                          <img class="eye-icon d-none" src="/images/eye.svg" id="show-password" alt="" title="Show Password">
+                        </div>
+                      </div>
+                      <div class="mb-4">
+                        <div class="form-check form-switch d-flex align-items-center">
+                          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                          <label class="form-check-label ms-3" for="flexSwitchCheckDefault"
+                            style="color: #be9b7b !important;">Remember Me</label>
+                        </div>
+                      </div>
+                      <button id="signin" class="btn btn-primary d-block btn-user w-100" type="submit" name="login" href="/">Login</button>
+                      <hr />
+                    </form>
+                    <!-- <div class="text-center"><a class="small" href="forgot_password">ForgotPassword?</a></div> -->
+                    <div class="text-center"><a class="small" href="register">Create an Account!</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Login Form -->
+    </div>
+  </section>
+  <!-- end contact section -->
+
+
+  <!-- info section -->
+  <%- include("partials/info") %>
+  <!-- end info section -->
+
+
+  <!-- footer section -->
+  <%- include("partials/footer") %>
+  <!-- footer section -->
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+
+  <script>
+
+    const showPassword = document.querySelector("#show-password");
+    const password = document.querySelector("#your_pass");
+
+    // Event listener for input to show eye icon
+    password.addEventListener("input", () => {
+      showPassword.classList.remove("d-none"); 
+      if (!password.value){   
+        showPassword.classList.add("d-none"); 
+        if (password.type === "text"){
+          password.type = "password";
+          showPassword.src = "/images/eye.svg";
+          showPassword.title = "Show Password"
+        }
+      }
+    })
+
+    // Toggle Show Password
+    showPassword.addEventListener("click", () => {
+      if (password.type === "password") {
+        password.type = "text";
+        showPassword.src = "/images/eye-slash.svg";
+        showPassword.title = "Hide Password"
+      } else {
+        password.type = "password";
+        showPassword.src = "/images/eye.svg";
+        showPassword.title = "Show Password"
+      }
+    })
+    // End Toggle Show Password
+
+  document.getElementById('your_email').addEventListener('input', function () {
+  // Remove non-letter, non-number, and non-space characters
+  this.value = this.value.replace(/[^A-Za-z0-9@.-]/g, '');
+
+  // Remove spaces at the beginning and hyphen at the beginning
+  this.value = this.value.replace(/^\s+/, '').replace(/^-/, '');
+
+  // Limit the length if needed
+  var maxLength = 30; // You can set the desired maximum length
+  if (this.value.length > maxLength) {
+    this.value = this.value.slice(0, maxLength);
+  }
+});
+document.getElementById('your_pass').addEventListener('input', function () {
+  // Remove spaces
+  this.value = this.value.replace(/\s/g, '');
+
+  // Limit the length if needed
+  var maxLength = 20; // You can set the desired maximum length
+  if (this.value.length > maxLength) {
+    this.value = this.value.slice(0, maxLength);
+  }
+});
+    function openNav() {
+      document.getElementById("myNav").classList.toggle("menu_width");
+      document
+        .querySelector(".custom_menu-btn")
+        .classList.toggle("menu_btn-style");
+    }
+  </script>
+</body>
+
+</html>
